@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_swiper/flutter_swiper.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    PageController controller = PageController(viewportFraction: 0.7);
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.blueGrey[900],
@@ -137,19 +136,52 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 320.0,
-                height: 240.0,
-                child: ListView.builder(
+                width: 400.0,
+                height: 320.0,
+                child: PageView.builder(
+                  controller: controller,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 3,
+                  itemCount: 4,
                   itemBuilder: (context, itemCount) {
                     return Card(
-                      margin: EdgeInsets.only(top: 10.0, right: 10.0),
+                      color: Colors.blueGrey[900],
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Image(
-                        image: AssetImage('images/travel.jpg'),
-                        fit: BoxFit.scaleDown,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image(
+                              image: AssetImage('images/travel.jpg'),
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: 240.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Text(
+                            'Morocoo',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 24.0,
+                              letterSpacing: 0.2,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.blueGrey[200],
+                            ),
+                          ),
+                          Text(
+                            '56 Activities',
+                            style: TextStyle(
+                              color: Colors.white30,
+                              fontFamily: 'Source Sans Pro',
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ],
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -158,7 +190,48 @@ class MyApp extends StatelessWidget {
                     );
                   },
                 ),
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 28.0, top: 16.0),
+                    child: Text(
+                      'EXCLUSIVE HOTELS',
+                      style: TextStyle(
+                        color: Colors.white60,
+                        fontFamily: 'Source Sans Pro',
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16.0,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 28.0, top: 16.0),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontFamily: 'Source Sans Pro',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.orange[400],
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.orange[400],
+                          size: 12.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
